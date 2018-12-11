@@ -1,3 +1,6 @@
 <p>
   cats works!
 </p>
+<div *ngFor="let catImage of catImages; let i = index">
+  <app-cat  [catImage]="catImage" [catIndex]="i"></app-cat>
+</div>

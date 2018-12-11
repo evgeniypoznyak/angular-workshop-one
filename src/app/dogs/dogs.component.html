@@ -1,3 +1,6 @@
 <p>
   dogs works!
 </p>
+<div>
+  <app-dog *ngFor="let dogImage of dogImages; let i = index" [dogImage]="dogImage" [dogIndex]="i"></app-dog>
+</div>

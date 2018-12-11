@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dog',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dog.component.sass']
 })
 export class DogComponent implements OnInit {
-
+  @Input() dogImage: string;
+  @Input() dogIndex: number;
   constructor() { }
 
   ngOnInit() {
