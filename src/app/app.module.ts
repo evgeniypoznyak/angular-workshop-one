@@ -23,4 +23,4 @@ import { DogComponent } from './dogs/dog/dog.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

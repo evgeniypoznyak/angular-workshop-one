@@ -1,0 +1,20 @@
+.root {
+  background: #ff7c03;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+.dogsAndCatsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between;
+
+  .petList {
+    flex-basis: 25%;
+    flex-grow: 0;
+    margin: 25px;
+  }
+
+}

@@ -1,0 +1,29 @@
+.catContainer {
+  display: block;
+  height: 300px;
+  text-align: center;
+  background-color: #acacac;
+
+  img {
+    max-height: 200px;
+  }
+
+  button {
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    padding: 8px;
+    border-radius: 7px;
+    box-shadow: -1px 3px 6px 1px #ababab57;
+    margin: 10px;
+    transition: all 0.2s;
+  }
+
+  button:hover {
+    box-shadow: 0 0 19px 6px #ff7c03;
+    color: #ffffff;
+    background-color: #ff7c03;
+    cursor: pointer;
+    border-color: #ff7c03;
+  }
+}

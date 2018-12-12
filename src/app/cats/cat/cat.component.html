@@ -1,3 +1,9 @@
-<p>
-  cat works!
-</p>
+<div class="catContainer">
+  <p>
+    cat works!
+  </p>
+  <img [src]="catImage" alt="cat image">
+  <div class="buttonsWrapper">
+    <button (click)="onMeowClick(catIndex)">Say Meow!</button>
+  </div>
+</div>

@@ -1,3 +1,11 @@
-<p>
-  dog works!
-</p>
+<div class="dogContainer">
+  <p>
+    dog works!
+  </p>
+  <div class="imageWrapper">
+    <img [src]="dogImage" alt="cat image">
+  </div>
+  <div class="buttonsWrapper">
+    <button (click)="onDogWoofClick(dogIndex)">Say Woof!</button>
+  </div>
+</div>
