@@ -1,7 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { CatsService } from '../cats.service';
-import { DogsService } from '../../dogs/dogs.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../shared/app-store/app-reducers';
+import { State as AnimalsInterface } from '../../shared/animals-store/animals.reducers';
 import { Subscription } from 'rxjs';
+import * as AnimalsActions from '../../shared/animals-store/animals.actions';
 
 @Component({
   selector: 'app-cat',
@@ -14,20 +16,24 @@ export class CatComponent implements OnInit, OnDestroy {
   displayScaryCatText: string;
   addCssClass = false;
   dogIndex: number;
-  dogSubscriber: Subscription;
+  private subscription: Subscription;
 
-  constructor(private catService: CatsService, private dogService: DogsService) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.listenForDogWoofing();
   }
 
   listenForDogWoofing() {
-    this.dogSubscriber = this.dogService.dogSayWoof.subscribe((index: number) => {
-      this.dogIndex = index;
-      this.displayScaryCatText = `Oh no! Dog #[${index}] is woofing!`;
-      this.addCssClass = true;
-      this.clearTextAfter(3000);
+    this.subscription = this.store.select('animals').subscribe((animalsState: AnimalsInterface) => {
+      if (animalsState.animals.dog.woof) {
+        this.dogIndex = animalsState.animals.dog.index;
+        this.displayScaryCatText = `Oh no! Dog #[${this.dogIndex}] is woofing!`;
+        this.addCssClass = true;
+        this.store.dispatch(new AnimalsActions.DogStopWoofing(undefined));
+        this.store.dispatch(new AnimalsActions.CatStopMeowing(undefined));
+         this.clearTextAfter(2000);
+      }
     });
   }
 
@@ -35,15 +41,16 @@ export class CatComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.displayScaryCatText = '';
       this.addCssClass = false;
+
     }, timeout);
   }
 
   onMeowClick() {
-    this.catService.catSayMeow.next(this.catIndex);
+    this.store.dispatch(new AnimalsActions.CatStartMeowing(this.catIndex));
   }
 
   ngOnDestroy(): void {
-    this.dogSubscriber.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }

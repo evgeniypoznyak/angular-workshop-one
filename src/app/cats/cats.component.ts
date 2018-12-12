@@ -17,6 +17,7 @@ export class CatsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

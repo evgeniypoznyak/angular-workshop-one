@@ -7,6 +7,10 @@ import { CatsComponent } from './cats/cats.component';
 import { DogsComponent } from './dogs/dogs.component';
 import { CatComponent } from './cats/cat/cat.component';
 import { DogComponent } from './dogs/dog/dog.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './shared/app-store/app-reducers';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { DogComponent } from './dogs/dog/dog.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    !environment.production ? StoreDevtoolsModule.instrument(): [], // After StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
