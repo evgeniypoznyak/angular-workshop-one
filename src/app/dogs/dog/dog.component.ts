@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dog',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DogComponent implements OnInit {
   @Input() dogImage: string;
   @Input() dogIndex: number;
+  @Output() dogSayWoof: EventEmitter<number> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -15,8 +16,7 @@ export class DogComponent implements OnInit {
 
   onDogWoofClick(index) {
     console.log('WOOF');
-    console.log(this.dogIndex);
-    console.log(index);
+    this.dogSayWoof.emit(index);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cat',
@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CatComponent implements OnInit {
   @Input() catImage: string;
   @Input() catIndex: number;
+  @Output() catSayMeow: EventEmitter<number> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -15,8 +17,7 @@ export class CatComponent implements OnInit {
 
   onMeowClick(index) {
     console.log('MEOW');
-    console.log(this.catIndex);
-    console.log(index);
+    this.catSayMeow.emit(this.catIndex);
   }
 
 }

@@ -2,10 +2,15 @@
 
 <div class="dogsAndCatsWrapper">
 
-  <app-cats class="petList"></app-cats>
+  <app-cats
+    class="petList"
+    (someOfTheCatsIsMeowing)="catsIsMeowing($event)">
+  </app-cats>
 
-  <app-dogs class="petList"></app-dogs>
-
+  <app-dogs
+    class="petList"
+    (someOfTheDogsIsWoofing)="dogsIsWoofing($event)"
+  ></app-dogs>
 
 </div>
 

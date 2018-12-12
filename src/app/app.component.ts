@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-workshop-one';
+
+  catsIsMeowing(index) {
+    console.log('APP COMPONENT CAT INDEX: ', index);
+  }
+
+  dogsIsWoofing(index) {
+    console.log('APP COMPONENT DOG INDEX: ', index);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dogs',
@@ -13,9 +13,15 @@ export class DogsComponent implements OnInit {
     'https://dynaimage.cdn.cnn.com/cnn/w_768,h_1024,c_scale/https%3A%2F%2Fdynaimage.cdn.cnn.com%2Fcnn%2Fx_1229%2Cy_0%2Cw_2712%' +
     '2Ch_3616%2Cc_crop%2Fhttps%253A%252F%252Fstamp.static.cnn.io%252F5b7ac48b4db3d70020c01c13%252Fshutterstock_1081879181.jpg',
   ];
+  @Output() someOfTheDogsIsWoofing: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDogSayWoofEventOccurred(index) {
+    console.log('onDogSayWoofEventOccurred: ', index);
+    this.someOfTheDogsIsWoofing.emit(index);
   }
 
 }

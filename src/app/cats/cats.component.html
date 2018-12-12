@@ -1,6 +1,9 @@
 <div class="cats">
   <div class="header">cats works!</div>
   <div *ngFor="let catImage of catImages; let i = index">
-    <app-cat [catImage]="catImage" [catIndex]="i"></app-cat>
+    <app-cat
+      [catImage]="catImage" [catIndex]="i"
+      (catSayMeow)="onCatSayMeowEventOccurred($event)">
+    </app-cat>
   </div>
 </div>

@@ -1,4 +1,8 @@
 <div class="dogs">
   <div class="header"> dogs works!</div>
-  <app-dog *ngFor="let dogImage of dogImages; let i = index" [dogImage]="dogImage" [dogIndex]="i"></app-dog>
+  <app-dog
+    *ngFor="let dogImage of dogImages; let i = index"
+    [dogImage]="dogImage" [dogIndex]="i"
+    (dogSayWoof)="onDogSayWoofEventOccurred($event)">
+  </app-dog>
 </div>
