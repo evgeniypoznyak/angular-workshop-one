@@ -1,26 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CatsService } from '../../cats/cats.service';
+import { DogsService } from '../dogs.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dog',
   templateUrl: './dog.component.html',
   styleUrls: ['./dog.component.scss']
 })
-export class DogComponent implements OnInit {
+export class DogComponent implements OnInit, OnDestroy {
   @Input() dogImage: string;
   @Input() dogIndex: number;
-  @Output() dogSayWoof: EventEmitter<number> = new EventEmitter();
-  @Input() iKnowWhichCatIsMeowing: EventEmitter<any> = new EventEmitter();
   displayAngryDogText: string;
   addCssClass = false;
+  catSubscriber: Subscription;
 
-  constructor() { }
+  constructor(private catService: CatsService, private dogService: DogsService) { }
 
   ngOnInit() {
     this.listenForCatMeowing();
   }
 
   listenForCatMeowing() {
-    this.iKnowWhichCatIsMeowing.subscribe((index) => {
+    this.catSubscriber = this.catService.catSayMeow.subscribe((index) => {
       this.displayAngryDogText = `Woof! This cat is meowing! [${index}]`;
       this.addCssClass = true;
       this.clearTextAfter(3000);
@@ -28,15 +30,18 @@ export class DogComponent implements OnInit {
   }
 
   clearTextAfter(timeout: number) {
-    setTimeout( () => {
+    setTimeout(() => {
       this.displayAngryDogText = '';
       this.addCssClass = false;
     }, timeout);
   }
 
-  onDogWoofClick(index) {
-    console.log('WOOF');
-    this.dogSayWoof.emit(index);
+  onDogWoofClick() {
+    this.dogService.dogSayWoof.next(this.dogIndex);
+  }
+
+  ngOnDestroy(): void {
+    this.catSubscriber.unsubscribe();
   }
 
 }

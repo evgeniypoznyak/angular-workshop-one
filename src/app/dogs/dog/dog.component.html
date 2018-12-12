@@ -6,7 +6,7 @@
     <img [src]="dogImage" alt="cat image">
   </div>
   <div class="buttonsWrapper">
-    <button (click)="onDogWoofClick(dogIndex)">Say Woof!</button>
+    <button (click)="onDogWoofClick()">Say Woof!</button>
     <div *ngIf="displayAngryDogText">
       <div>{{displayAngryDogText}}</div>
     </div>

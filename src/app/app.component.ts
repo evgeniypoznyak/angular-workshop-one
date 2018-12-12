@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,16 +6,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  @Output() notifyDogsAboutCatMeowing: EventEmitter<any> = new EventEmitter();
-  @Output() notifyCatsAboutDogsWoofing: EventEmitter<number> = new EventEmitter();
-
-  catsIsMeowing(index) {
-    this.notifyDogsAboutCatMeowing.emit(index);
-  }
-
-  dogsIsWoofing(index: number) {
-    this.notifyCatsAboutDogsWoofing.emit(index);
-  }
 
 }

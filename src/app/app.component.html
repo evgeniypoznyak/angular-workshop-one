@@ -2,18 +2,9 @@
 
 <div class="dogsAndCatsWrapper">
 
-  <app-cats
-    class="petList"
-    (someOfTheCatsIsMeowing)="catsIsMeowing($event)"
-    [dogsIsWoofing]="notifyCatsAboutDogsWoofing"
-  >
-  </app-cats>
+  <app-cats class="petList"></app-cats>
 
-  <app-dogs
-    class="petList"
-    (someOfTheDogsIsWoofing)="dogsIsWoofing($event)"
-    [catsIsMeowing]="notifyDogsAboutCatMeowing"
-  ></app-dogs>
+  <app-dogs class="petList"></app-dogs>
 
 </div>
 
