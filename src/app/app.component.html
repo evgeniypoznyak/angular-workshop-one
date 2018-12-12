@@ -4,12 +4,15 @@
 
   <app-cats
     class="petList"
-    (someOfTheCatsIsMeowing)="catsIsMeowing($event)">
+    (someOfTheCatsIsMeowing)="catsIsMeowing($event)"
+    [dogsIsWoofing]="notifyCatsAboutDogsWoofing"
+  >
   </app-cats>
 
   <app-dogs
     class="petList"
     (someOfTheDogsIsWoofing)="dogsIsWoofing($event)"
+    [catsIsMeowing]="notifyDogsAboutCatMeowing"
   ></app-dogs>
 
 </div>

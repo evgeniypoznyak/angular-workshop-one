@@ -1,9 +1,18 @@
-<div class="catContainer">
+<div class="catContainer" [ngClass]="{'scaryCats' : addCssClass}">
   <p>
     cat works!
   </p>
-  <img [src]="catImage" alt="cat image">
+
+  <div class="imageWrapper">
+    <div class="textOnTop" *ngIf="catIndex === dogIndex">Will be right back in 5 minutes...</div>
+    <img [src]="catImage" alt="cat image" [ngClass]="{'hideTheCat' : catIndex === dogIndex}">
+  </div>
+
   <div class="buttonsWrapper">
     <button (click)="onMeowClick(catIndex)">Say Meow!</button>
+    <div *ngIf="displayScaryCatText">
+      <div>{{displayScaryCatText}}</div>
+    </div>
   </div>
+
 </div>

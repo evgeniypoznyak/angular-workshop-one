@@ -3,7 +3,9 @@
   <div *ngFor="let catImage of catImages; let i = index">
     <app-cat
       [catImage]="catImage" [catIndex]="i"
-      (catSayMeow)="onCatSayMeowEventOccurred($event)">
+      (catSayMeow)="onCatSayMeowEventOccurred($event)"
+      [iKnowWhichDogIsWoofing]="dogsIsWoofing"
+    >
     </app-cat>
   </div>
 </div>

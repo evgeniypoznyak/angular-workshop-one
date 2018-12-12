@@ -3,6 +3,8 @@
   <app-dog
     *ngFor="let dogImage of dogImages; let i = index"
     [dogImage]="dogImage" [dogIndex]="i"
-    (dogSayWoof)="onDogSayWoofEventOccurred($event)">
+    (dogSayWoof)="onDogSayWoofEventOccurred($event)"
+    [iKnowWhichCatIsMeowing]="catsIsMeowing"
+  >
   </app-dog>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  @Output() notifyDogsAboutCatMeowing: EventEmitter<any> = new EventEmitter();
+  @Output() notifyCatsAboutDogsWoofing: EventEmitter<number> = new EventEmitter();
+
   catsIsMeowing(index) {
-    console.log('APP COMPONENT CAT INDEX: ', index);
+    this.notifyDogsAboutCatMeowing.emit(index);
   }
 
-  dogsIsWoofing(index) {
-    console.log('APP COMPONENT DOG INDEX: ', index);
+  dogsIsWoofing(index: number) {
+    this.notifyCatsAboutDogsWoofing.emit(index);
   }
+
 }

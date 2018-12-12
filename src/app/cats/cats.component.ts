@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cats',
@@ -14,10 +14,13 @@ export class CatsComponent implements OnInit {
     'dicapped-cat-rexie-the-handicat-dasha-minaeva-58-5acb4f1931e1b__700.jpg',
   ];
   @Output() someOfTheCatsIsMeowing: EventEmitter<any> = new EventEmitter();
-
+  @Input() dogsIsWoofing: EventEmitter<number> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+    this.dogsIsWoofing.subscribe((index: number) => {
+      // we can do something here to, but we passed event down to cat component
+    });
   }
 
   onCatSayMeowEventOccurred(event) {

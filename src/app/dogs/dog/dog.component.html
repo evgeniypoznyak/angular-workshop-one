@@ -1,4 +1,4 @@
-<div class="dogContainer">
+<div class="dogContainer" [ngClass]="{'angryDog' : addCssClass}">
   <p>
     dog works!
   </p>
@@ -7,5 +7,8 @@
   </div>
   <div class="buttonsWrapper">
     <button (click)="onDogWoofClick(dogIndex)">Say Woof!</button>
+    <div *ngIf="displayAngryDogText">
+      <div>{{displayAngryDogText}}</div>
+    </div>
   </div>
 </div>
