@@ -24,20 +24,16 @@ export class DogComponent implements OnInit, OnDestroy {
   }
 
   listenForCatMeowing() {
-    this.subscription = this.store.select('animals').subscribe((animalsInterface: AnimalsInterface) => {
-      if (animalsInterface.animals.cat.meow) {
-        this.displayAngryDogText = `Woof! This cat is meowing! [${animalsInterface.animals.cat.index}]`;
+    this.subscription = this.store.select('animals').subscribe((animalsState: AnimalsInterface) => {
+      if (animalsState.animals.cat.meow) {
+        this.displayAngryDogText = `Woof! This cat is meowing! [${animalsState.animals.cat.index}]`;
         this.addCssClass = true;
-        this.clearTextAfter(2000);
+      }
+      if (!animalsState.animals.cat.meow && !animalsState.animals.dog.woof) {
+        this.displayAngryDogText = '';
+        this.addCssClass = false;
       }
     });
-  }
-
-  clearTextAfter(timeout: number) {
-    setTimeout(() => {
-      this.displayAngryDogText = '';
-      this.addCssClass = false;
-    }, timeout);
   }
 
   onDogWoofClick() {

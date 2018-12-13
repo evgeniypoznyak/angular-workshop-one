@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import * as fromApp from '../../shared/app-store/app-reducers';
 import { State as AnimalsInterface } from '../../shared/animals-store/animals.reducers';
-import { Subscription } from 'rxjs';
 import * as AnimalsActions from '../../shared/animals-store/animals.actions';
 
 @Component({
@@ -26,23 +26,19 @@ export class CatComponent implements OnInit, OnDestroy {
 
   listenForDogWoofing() {
     this.subscription = this.store.select('animals').subscribe((animalsState: AnimalsInterface) => {
+
       if (animalsState.animals.dog.woof) {
         this.dogIndex = animalsState.animals.dog.index;
-        this.displayScaryCatText = `Oh no! Dog #[${this.dogIndex}] is woofing!`;
         this.addCssClass = true;
-        this.store.dispatch(new AnimalsActions.DogStopWoofing(undefined));
-        this.store.dispatch(new AnimalsActions.CatStopMeowing(undefined));
-         this.clearTextAfter(2000);
+        this.displayScaryCatText = `Oh no! Dog #[${this.dogIndex}] is woofing!`;
       }
+
+      if (!animalsState.animals.cat.meow && !animalsState.animals.dog.woof) {
+        this.displayScaryCatText = '';
+        this.addCssClass = false;
+      }
+
     });
-  }
-
-  clearTextAfter(timeout: number) {
-    setTimeout(() => {
-      this.displayScaryCatText = '';
-      this.addCssClass = false;
-
-    }, timeout);
   }
 
   onMeowClick() {

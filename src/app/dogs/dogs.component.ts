@@ -17,7 +17,6 @@ export class DogsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }
